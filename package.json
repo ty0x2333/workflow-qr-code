@@ -1,0 +1,15 @@
+{
+  "name": "qr-code",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/ty0x2333/workflow-qr-code",
+  "author": "ty0x2333",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "alfy": "^0.12.1",
+    "qrcode": "^1.4.4",
+    "temp": "^0.9.4"
+  }
+}
