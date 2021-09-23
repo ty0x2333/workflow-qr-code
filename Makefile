@@ -1,5 +1,5 @@
 .PHONY: help
-WORKFLOW_VERSION := `plutil -extract version xml1 -o - qr-code/info.plist | sed -n "s/.*<string>\(.*\)<\/string>.*/\1/p"`
+WORKFLOW_VERSION := `plutil -extract version xml1 -o - info.plist | sed -n "s/.*<string>\(.*\)<\/string>.*/\1/p"`
 
 help: ## show this help message and exit
 	@echo "usage: make [target]"
@@ -9,7 +9,7 @@ help: ## show this help message and exit
 
 update_version: ## update workflow version
 	@read -p 'version: ' version; \
-	plutil -replace version -string $version qr-code/info.plist;
+	plutil -replace version -string $version info.plist;
 
 version: ## get current workflow version
 	@echo "${WORKFLOW_VERSION}"
@@ -17,13 +17,13 @@ version: ## get current workflow version
 build: ## build .alfredworkflow file
 	@make clean;
 	@yarn;
-	@mkdir -p dist; \
-	cp -r qr-code dist/output; \
-	cp -r node_modules dist/output/node_modules; \
-	zip -q -r dist/qr-code.alfredworkflow dist/output/*;
+	@mkdir -p dist/output; \
+	cp qr_code.js icon.png info.plist package.json dist/output; \
+	cp -r node_modules dist/output/node_modules;
+	@cd dist/output && zip -q -r -D ../qr-code.alfredworkflow *;
 
 clean: ## Clean build and archive files
-	@rm -rf dist
+	@rm -rf dist;
 
 archive: ## archive .zip file
 	@make build; \
