@@ -27,4 +27,5 @@ clean: ## Clean build and archive files
 
 archive: ## archive .zip file
 	@make build; \
-	zip -q -r -o dist/workflow-qr-code-${WORKFLOW_VERSION}.zip dist/qr-code.alfredworkflow
+	version=${WORKFLOW_VERSION}; \
+	cd dist && zip -q -r -o workflow-qr-code-$$version.zip qr-code.alfredworkflow;
