@@ -9,7 +9,7 @@ help: ## show this help message and exit
 
 update_version: ## update workflow version
 	@read -p 'version: ' version; \
-	plutil -replace version -string $version info.plist;
+	plutil -replace version -string $$version info.plist;
 
 version: ## get current workflow version
 	@echo "${WORKFLOW_VERSION}"
